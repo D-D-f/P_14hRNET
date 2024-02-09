@@ -9,7 +9,7 @@ const Header = () => {
         <header>
             <img src={logo} alt="logo argentbank"/>
 
-            <div>
+            <div className="header_signin">
                 <FontAwesomeIcon icon={faCircleUser} />
                 <span>Sign In</span>
             </div>

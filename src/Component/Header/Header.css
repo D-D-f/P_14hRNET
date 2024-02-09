@@ -7,5 +7,13 @@ header {
 header img {
   width: 200px;
 }
+header .header_signin {
+  display: flex;
+  align-items: center;
+}
+header .header_signin span {
+  margin-left: 10px;
+  font-weight: bold;
+}
 
 /*# sourceMappingURL=Header.css.map */
