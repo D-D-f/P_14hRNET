@@ -1,0 +1,51 @@
+@import '../variables';
+
+.SignIn {
+  background-color: white;
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 3rem;
+  padding: 2rem;
+
+  h1 {
+    font-weight: bold;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.InputSignIn {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 1rem;
+
+  label {
+    font-weight: bold;
+  }
+
+  input {
+    padding: 5px;
+    font-size: 1.2rem;
+  }
+}
+
+.input-remember {
+  display: flex;
+
+  label {
+    margin-left: 0.25rem;
+  }
+}
+
+.SignIn form button {
+  text-decoration-line: underline;
+  padding: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  width: 100%;
+  background-color: $greenBtn;
+  border: none;
+  color: white;
+}

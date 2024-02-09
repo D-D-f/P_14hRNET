@@ -1,5 +1,5 @@
 import logo from "../../assets/img/argentBankLogo.png";
-import "./Header.scss";
+import "../../assets/scss/PagesStyle/Header.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 
