@@ -3,13 +3,22 @@ import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from "react-hook-form";
 import {authentication} from "../../Requete/authentication.ts";
 import "../../assets/scss/PagesStyle/SignIn.scss";
+import {useState} from "react";
 
 const SignIn = () => {
+    const [remember, setRemember] = useState(false)
     const {register, handleSubmit} = useForm();
 
     const onSubmit = async (d) => {
         const connectionUser = await authentication(d);
-        console.log(connectionUser)
+
+        if(connectionUser.status === 200 && remember && !localStorage.getItem('remember')) {
+            localStorage.setItem("remember", JSON.stringify(d));
+        }
+    }
+
+    const activeRemember = (e) => {
+        setRemember(e.target.checked)
     }
 
     return (
@@ -26,7 +35,7 @@ const SignIn = () => {
                     <input type="password" id="Password" {...register('password')} />
                 </div>
                 <div className="input-remember">
-                    <input type="checkbox" id="remember-me" name="remember-me"/>
+                    <input type="checkbox" id="remember-me" name="remember-me" onChange={activeRemember}/>
                     <label htmlFor="remember-me">Remember me</label>
                 </div>
 
