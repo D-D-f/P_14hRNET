@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 
 const SignIn = () => {
     const [remember, setRemember] = useState(false);
+    const [error, setError] = useState(false)
     const { register, handleSubmit, setValue, getValues } = useForm();
 
     useEffect(() => {
@@ -21,6 +22,12 @@ const SignIn = () => {
     const onSubmit = async (data) => {
         const connectionUser = await authentication(data);
 
+        if(connectionUser === undefined) {
+            setError(true);
+        } else {
+            setError(false);
+        }
+
         if (connectionUser.status === 200 && remember && !localStorage.getItem('remember')) {
             localStorage.setItem("remember", JSON.stringify(data));
         }
@@ -30,7 +37,6 @@ const SignIn = () => {
         setRemember(e.target.checked);
 
         if (!e.target.checked) {
-            // Effacer les valeurs du localStorage si "Remember me" est décoché
             localStorage.removeItem('remember');
         }
     }
@@ -49,9 +55,11 @@ const SignIn = () => {
                     <input type="password" id="Password" {...register('password', { required: true })} defaultValue={remember ? getValues('password') : ''} />
                 </div>
                 <div className="input-remember">
-                    <input type="checkbox" id="remember-me" name="remember-me" checked={remember} onChange={activeRemember} />
+                    <input type="checkbox" id="remember-me" name="remember-me" checked={localStorage.getItem('remember') ? true : remember} onChange={activeRemember} />
                     <label htmlFor="remember-me">Remember me</label>
                 </div>
+
+                <p>{error ? "Votre mot de passe ou l'identifiant est incorrect" : ""}</p>
 
                 <button type="submit">Sign in</button>
             </form>
