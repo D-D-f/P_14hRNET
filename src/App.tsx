@@ -1,5 +1,5 @@
 import Header from "./Component/Header/Header.tsx";
-import SignInPage from "./Pages/SignInPage/SignInPage.tsx";
+import UserPage from "./Pages/UserPage/UserPage.tsx";
 import Footer from "./Component/Footer/Footer.tsx";
 import "./assets/scss/PagesStyle/App.scss";
 
@@ -8,7 +8,7 @@ const App = () => {
         <div className="App">
             <Header />
             <main>
-                <SignInPage />
+                <UserPage />
             </main>
             <Footer />
         </div>
