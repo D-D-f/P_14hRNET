@@ -1,14 +1,17 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import { useForm } from "react-hook-form";
-import { authentication } from "../../Requete/authentication.ts";
-import "../../assets/scss/PagesStyle/SignIn.scss";
 import { useState, useEffect } from "react";
+import { authentication } from "../../Requete/authentication.ts";
+import {DataType} from "../Interface/DataType.ts";
+import "../../assets/scss/PagesStyle/SignIn.scss";
+
 
 const SignIn = () => {
     const [remember, setRemember] = useState(false);
     const [error, setError] = useState(false)
     const { register, handleSubmit, setValue, getValues } = useForm();
+
 
     useEffect(() => {
         if (localStorage.getItem('remember')) {
@@ -19,7 +22,7 @@ const SignIn = () => {
         }
     }, [setValue]);
 
-    const onSubmit = async (data) => {
+    const onSubmit = async (data: DataType) => {
         const connectionUser = await authentication(data);
 
         if(connectionUser === undefined) {
