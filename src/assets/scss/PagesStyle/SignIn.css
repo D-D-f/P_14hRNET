@@ -32,6 +32,7 @@
 
 .input-remember {
   display: flex;
+  align-items: center;
 }
 .input-remember label {
   margin-left: 0.25rem;
