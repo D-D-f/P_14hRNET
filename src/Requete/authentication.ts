@@ -1,3 +1,6 @@
+
+
+
 export const authentication = async (data) => {
     const requete: Response = await fetch("http://localhost:3001/api/v1/user/login", {
         method: "POST",
