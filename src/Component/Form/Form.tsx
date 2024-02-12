@@ -1,5 +1,5 @@
 import {useForm} from "react-hook-form";
-
+import InputDate from "../InputDate/InputDate.tsx";
 const Form = () => {
     const {register, handleSubmit} = useForm();
 
@@ -16,6 +16,10 @@ const Form = () => {
                 <div>
                     <label htmlFor="lastName">Last Name</label>
                     <input type="text" id="lastName" {...register("lastName")}/>
+                </div>
+
+                <div>
+                    <InputDate />
                 </div>
 
                 <button>save</button>
