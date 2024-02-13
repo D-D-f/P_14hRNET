@@ -25,25 +25,25 @@ const InputDate = () => {
     "December",
   ];
 
-  const [month, setMonth] = useState(months[currentMonth]);
+  const [month, setMonth] = useState(currentMonth);
   const [year, setYear] = useState(currentYear);
+
+  const getMonth = (e: Event) => {
+    setMonth(months.indexOf(e.currentTarget.value));
+  };
+
+  const getYear = (e: Event) => {
+    setYear(Number(e?.currentTarget?.value));
+  };
 
   for (let i = 1950; i <= 2050; i++) {
     years.push(i);
   }
 
-  for (let i = 1; i < 29; i++) {
-    let day = getDays(2024, 1, i);
+  for (let i = 1; i <= 29; i++) {
+    let day = getDays(year, month, i);
     days.push(day);
   }
-
-  const getMonth = (e: Event) => {
-    setMonth(e.currentTarget.value);
-  };
-
-  const getYear = (e: Event) => {
-    setYear(Number(e.currentTarget.value));
-  };
 
   const displayMonths = months.map((month, index) => (
     <Selected key={index} current={months[currentMonth]} date={month} />
@@ -52,6 +52,8 @@ const InputDate = () => {
   const displayYears = years.map((year, index) => (
     <Selected key={index} current={currentYear} date={year} />
   ));
+
+  console.log(days);
 
   return (
     <div className="dateTime">
