@@ -1,6 +1,6 @@
 import "./InputDate.css";
 import Selected from "../SelectedYear/SelectedYear";
-import { getDays } from "../UseCalendar/UseCalendar";
+import { getDays, allDate } from "../UseCalendar/UseCalendar";
 import { useState } from "react";
 
 const InputDate = () => {
@@ -100,8 +100,6 @@ const InputDate = () => {
     days.push(day);
   }
 
-  console.log(days);
-
   const displayMonths = months.map((month, index) => (
     <Selected key={index} current={months[currentMonth]} date={month} />
   ));
@@ -109,6 +107,17 @@ const InputDate = () => {
   const displayYears = years.map((year, index) => (
     <Selected key={index} current={currentYear} date={year} />
   ));
+
+  const rows = Object.keys(allDate.days).map((jour, index) => {
+    <thead key={index}>
+      <tr>
+        <th scope="col">{jour}</th>
+      </tr>
+      <tr>
+        <th scope="rows">{}</th>
+      </tr>
+    </thead>;
+  });
 
   return (
     <div className="dateTime">
@@ -119,16 +128,7 @@ const InputDate = () => {
         {displayYears}
       </select>
       <table>
-        <thead>
-          <tr>
-            {dateTime.days.map((day, index) => (
-              <th key={index} scope="col">
-                {day}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody></tbody>
+        <thead></thead>
       </table>
     </div>
   );
