@@ -27,6 +27,7 @@ const InputDate = () => {
 
   const [month, setMonth] = useState(currentMonth);
   const [year, setYear] = useState(currentYear);
+  const bissextile = year % 2 === 0 ? true : false;
 
   const getMonth = (e: Event) => {
     setMonth(months.indexOf(e.currentTarget.value));
@@ -36,14 +37,70 @@ const InputDate = () => {
     setYear(Number(e?.currentTarget?.value));
   };
 
+  const dateTime = {
+    days: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    months: {
+      0: {
+        month: "January",
+        nbDays: 31,
+      },
+      1: {
+        month: "February",
+        nbDays: bissextile ? 29 : 28,
+      },
+      2: {
+        month: "March",
+        nbDays: 31,
+      },
+      3: {
+        month: "April",
+        nbDays: 30,
+      },
+      4: {
+        month: "May",
+        nbDays: 31,
+      },
+      5: {
+        month: "June",
+        nbDays: 30,
+      },
+      6: {
+        month: "July",
+        nbDays: 31,
+      },
+      7: {
+        month: "August",
+        nbDays: 31,
+      },
+      8: {
+        month: "September",
+        nbDays: 30,
+      },
+      9: {
+        month: "October",
+        nbDays: 31,
+      },
+      10: {
+        month: "November",
+        nbDays: 30,
+      },
+      11: {
+        month: "December",
+        nbDays: 31,
+      },
+    },
+  };
+
   for (let i = 1950; i <= 2050; i++) {
     years.push(i);
   }
 
-  for (let i = 1; i <= 29; i++) {
+  for (let i = 1; i <= dateTime.months[month].nbDays; i++) {
     let day = getDays(year, month, i);
     days.push(day);
   }
+
+  console.log(days);
 
   const displayMonths = months.map((month, index) => (
     <Selected key={index} current={months[currentMonth]} date={month} />
@@ -53,8 +110,6 @@ const InputDate = () => {
     <Selected key={index} current={currentYear} date={year} />
   ));
 
-  console.log(days);
-
   return (
     <div className="dateTime">
       <select name="month" id="month" onChange={getMonth}>
@@ -63,6 +118,18 @@ const InputDate = () => {
       <select name="year" id="year" onChange={getYear}>
         {displayYears}
       </select>
+      <table>
+        <thead>
+          <tr>
+            {dateTime.days.map((day, index) => (
+              <th key={index} scope="col">
+                {day}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
     </div>
   );
 };
