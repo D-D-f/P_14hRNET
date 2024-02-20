@@ -1,5 +1,9 @@
 ## HrNet
 
+### Author
+
+David de Freitas
+
 ### Compétences évaluées
 
 - Analyser la performance d'une application web
