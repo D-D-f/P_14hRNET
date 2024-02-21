@@ -27,8 +27,15 @@ const Selected = () => {
   ));
 
   return (
-    <div onClick={() => setActiveList((curr) => !curr)} className="selected">
-      <ul>{displayDays}</ul>
+    <div className="selected">
+      <div onClick={() => setActiveList((curr) => !curr)}>
+        {day[currentMonth]}
+      </div>
+      <ul
+        style={activeList === true ? { display: "block" } : { display: "none" }}
+      >
+        {displayDays}
+      </ul>
     </div>
   );
 };
