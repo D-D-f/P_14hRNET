@@ -42,5 +42,3 @@ const calculerDatePourCalendrier = (
 
   return { nbJourDuMois: nbJours, premierJourDuMois: premierJour };
 };
-
-console.log(calculerDatePourCalendrier(2, 2024, 19));

@@ -18,8 +18,6 @@ const Form = () => {
         <input type="text" id="lastName" {...register("lastName")} />
       </div>
 
-      <div></div>
-
       <button>save</button>
     </form>
   );
