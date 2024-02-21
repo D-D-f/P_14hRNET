@@ -1,8 +1,10 @@
 .selected {
   border: 1px solid black;
-  width: max-content;
+  width: 100px;
+  cursor: pointer;
 }
 
 .selected ul {
   list-style: none;
+  text-align: center;
 }

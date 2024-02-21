@@ -2,7 +2,8 @@ import { useState } from "react";
 import "./Selected.css";
 
 const Selected = () => {
-  const [choiceMonth, setChoiceMonth] = useState(0);
+  const [activeList, setActiveList] = useState(false);
+  const [currentMonth, setCurrentMonth] = useState(0);
 
   const day: string[] = [
     "Janvier",
@@ -19,12 +20,14 @@ const Selected = () => {
     "Decembre",
   ];
 
-  const displayDays = day.map((day, index) =>
-    choiceMonth === index ? <li key={index}>{day}</li> : ""
-  );
+  const displayDays = day.map((day, index) => (
+    <li onClick={() => setCurrentMonth(index)} key={index}>
+      {day}
+    </li>
+  ));
 
   return (
-    <div className="selected">
+    <div onClick={() => setActiveList((curr) => !curr)} className="selected">
       <ul>{displayDays}</ul>
     </div>
   );
