@@ -1,6 +1,5 @@
 import Form from "../../Component/Form/Form.tsx";
-import TableDate from "../../Component/TableDate/TableDate.jsx";
-import Selected from "../../Component/Selected/Selected.tsx";
+import ContainerTable from "../../Component/ContainerTable/ContainerTable";
 import { Link } from "react-router-dom";
 
 const CreateEmployee = () => {
@@ -10,8 +9,8 @@ const CreateEmployee = () => {
       <Link to="/">View Current Employees</Link>
       <h2>Create Employee</h2>
       <Form />
-      <TableDate />
-      <Selected />
+
+      <ContainerTable />
     </div>
   );
 };

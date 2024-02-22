@@ -1,40 +1,44 @@
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSortDown } from "@fortawesome/free-solid-svg-icons";
 import "./Selected.css";
 
-const Selected = () => {
+interface SelectedProps {
+  typeDate: string[] | number[];
+}
+
+const Selected = ({ typeDate }: SelectedProps) => {
   const [activeList, setActiveList] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(0);
 
-  const day: string[] = [
-    "Janvier",
-    "Fevrier",
-    "Mars",
-    "Avril",
-    "Mai",
-    "Juin",
-    "Juillet",
-    "Aout",
-    "Septembre",
-    "Octobre",
-    "Novembre",
-    "Decembre",
-  ];
-
-  const displayDays = day.map((day, index) => (
-    <li onClick={() => setCurrentMonth(index)} key={index}>
-      {day}
+  const displaytypeDates = typeDate.map((typeDate, index) => (
+    <li
+      style={
+        currentMonth === index
+          ? { backgroundColor: "#212AFBFF", color: "white" }
+          : { backgroundColor: "" }
+      }
+      className={currentMonth !== index ? "notSelected" : ""}
+      onClick={() => setCurrentMonth(index)}
+      key={index}
+    >
+      {typeDate}
     </li>
   ));
 
   return (
     <div className="selected">
-      <div onClick={() => setActiveList((curr) => !curr)}>
-        {day[currentMonth]}
+      <div
+        onClick={() => setActiveList((curr) => !curr)}
+        style={{ fontWeight: "bold" }}
+      >
+        {typeDate[currentMonth]}
+        <FontAwesomeIcon icon={faSortDown} />
       </div>
       <ul
         style={activeList === true ? { display: "block" } : { display: "none" }}
       >
-        {displayDays}
+        {displaytypeDates}
       </ul>
     </div>
   );
