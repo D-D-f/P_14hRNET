@@ -1,16 +1,22 @@
-import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSortDown } from "@fortawesome/free-solid-svg-icons";
 import "./Selected.css";
 
 interface SelectedProps {
   typeDate: string[] | number[];
+  activeList: Boolean;
+  currentMonth: number;
+  setActiveList: React.Dispatch<React.SetStateAction<boolean>>;
+  setCurrentMonth: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const Selected = ({ typeDate }: SelectedProps) => {
-  const [activeList, setActiveList] = useState(false);
-  const [currentMonth, setCurrentMonth] = useState(0);
-
+const Selected = ({
+  typeDate,
+  activeList,
+  currentMonth,
+  setCurrentMonth,
+  setActiveList,
+}: SelectedProps) => {
   const displaytypeDates = typeDate.map((typeDate, index) => (
     <li
       style={

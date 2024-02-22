@@ -3,12 +3,17 @@ import Selected from "../../Component/Selected/Selected";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretRight, faCaretLeft } from "@fortawesome/free-solid-svg-icons";
 import "./ContainerTable.css";
-import React from "react";
+import React, { useState } from "react";
 
 const ContainerTable = () => {
+  const [activeList, setActiveList] = useState(false);
+  const [activeListYear, setActiveListYear] = useState(false);
+  const [currentYear, setCurrentYear] = useState(0);
+  const [currentMonth, setCurrentMonth] = useState(0);
+
   const currentDate = new Date();
   const currentYears = currentDate.getFullYear();
-  console.log(currentYears);
+
   const months = [
     "January",
     "February",
@@ -25,18 +30,48 @@ const ContainerTable = () => {
   ];
 
   const years = [];
-
+  console.log(currentMonth);
   for (let i = 1950; i <= currentYears; i++) {
     years.push(i);
   }
+
+  console.log(`current year : ${currentYear}`);
 
   return (
     <div className="containerTable">
       <div style={{ display: "flex" }}>
         <FontAwesomeIcon icon={faCaretLeft} />
-        <Selected typeDate={months} />
-        <Selected typeDate={years} />
-        <FontAwesomeIcon icon={faCaretRight} />
+        <Selected
+          typeDate={months}
+          activeList={activeList}
+          currentMonth={currentMonth}
+          setActiveList={setActiveList}
+          setCurrentMonth={setCurrentMonth}
+        />
+
+        <Selected
+          typeDate={years}
+          activeList={activeListYear}
+          currentMonth={currentYear}
+          setActiveList={setActiveListYear}
+          setCurrentMonth={setCurrentYear}
+        />
+        <FontAwesomeIcon
+          icon={faCaretRight}
+          onClick={() =>
+            setCurrentMonth((curr) => {
+              if (curr === months.length - 1) {
+                setCurrentYear((curr) =>
+                  currentYear === years.length - 1 ? curr : curr + 1
+                );
+                return (curr = 0);
+              } else {
+                return curr + 1;
+              }
+            })
+          }
+          style={{ cursor: "pointer" }}
+        />
       </div>
       <TableDate />
     </div>
