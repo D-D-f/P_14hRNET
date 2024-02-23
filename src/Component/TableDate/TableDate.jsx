@@ -2,7 +2,7 @@ import React from "react";
 
 const TableDate = () => {
   return (
-    <table>
+    <table style={{ border: "1px solid black", width: "100%" }}>
       <thead>
         <tr>
           <th>Sun</th>

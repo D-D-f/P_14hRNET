@@ -6,13 +6,9 @@ import "./ContainerTable.css";
 import React, { useState } from "react";
 
 const ContainerTable = () => {
-  const [activeList, setActiveList] = useState(false);
-  const [activeListYear, setActiveListYear] = useState(false);
-  const [currentYear, setCurrentYear] = useState(0);
-  const [currentMonth, setCurrentMonth] = useState(0);
-
   const currentDate = new Date();
   const currentYears = currentDate.getFullYear();
+  const currentMonths = currentDate.getMonth();
 
   const months = [
     "January",
@@ -30,14 +26,26 @@ const ContainerTable = () => {
   ];
 
   const years = [];
-  console.log(currentMonth);
   for (let i = 1950; i <= currentYears; i++) {
     years.push(i);
   }
 
+  const [activeList, setActiveList] = useState(false);
+  const [activeListYear, setActiveListYear] = useState(false);
+  const [currentYear, setCurrentYear] = useState(years.indexOf(currentYears));
+  const [currentMonth, setCurrentMonth] = useState(
+    months.indexOf(months[currentMonths])
+  );
+
   return (
     <div className="containerTable">
-      <div style={{ display: "flex" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          padding: "10px 20px",
+        }}
+      >
         <FontAwesomeIcon
           icon={faCaretLeft}
           onClick={() =>
@@ -54,6 +62,7 @@ const ContainerTable = () => {
               return curr - 1;
             })
           }
+          style={{ cursor: "pointer" }}
         />
         <Selected
           typeDate={months}

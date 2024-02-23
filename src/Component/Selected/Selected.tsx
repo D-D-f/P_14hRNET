@@ -39,7 +39,7 @@ const Selected = ({
         style={{ fontWeight: "bold" }}
       >
         {typeDate[currentMonth]}
-        <FontAwesomeIcon icon={faSortDown} />
+        <FontAwesomeIcon icon={faSortDown} style={{ marginLeft: "10px" }} />
       </div>
       <ul
         style={activeList === true ? { display: "block" } : { display: "none" }}
