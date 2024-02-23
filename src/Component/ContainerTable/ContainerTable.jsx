@@ -2,6 +2,7 @@ import TableDate from "../../Component/TableDate/TableDate";
 import Selected from "../../Component/Selected/Selected";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretRight, faCaretLeft } from "@fortawesome/free-solid-svg-icons";
+import calculerDatePourCalendrier from "../../CustomHooks/UseCalculDay";
 import "./ContainerTable.css";
 import React, { useState } from "react";
 
@@ -9,6 +10,7 @@ const ContainerTable = () => {
   const currentDate = new Date();
   const currentYears = currentDate.getFullYear();
   const currentMonths = currentDate.getMonth();
+  const currentDateDay = currentDate.getDate();
 
   const months = [
     "January",
@@ -36,6 +38,14 @@ const ContainerTable = () => {
   const [currentMonth, setCurrentMonth] = useState(
     months.indexOf(months[currentMonths])
   );
+
+  const getFirstDayAndNumbersDays = calculerDatePourCalendrier(
+    currentMonth - 1,
+    years[currentYear],
+    currentDateDay
+  );
+
+  console.log(getFirstDayAndNumbersDays);
 
   return (
     <div className="containerTable">
@@ -96,7 +106,7 @@ const ContainerTable = () => {
           style={{ cursor: "pointer" }}
         />
       </div>
-      <TableDate />
+      <TableDate nbDaysAndFirstDayOnTheMonth={getFirstDayAndNumbersDays} />
     </div>
   );
 };

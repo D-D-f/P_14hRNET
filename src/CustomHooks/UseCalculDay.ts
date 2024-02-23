@@ -42,3 +42,5 @@ const calculerDatePourCalendrier = (
 
   return { nbJourDuMois: nbJours, premierJourDuMois: premierJour };
 };
+
+export default calculerDatePourCalendrier;
