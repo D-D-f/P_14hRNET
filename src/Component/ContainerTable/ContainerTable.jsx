@@ -35,12 +35,26 @@ const ContainerTable = () => {
     years.push(i);
   }
 
-  console.log(`current year : ${currentYear}`);
-
   return (
     <div className="containerTable">
       <div style={{ display: "flex" }}>
-        <FontAwesomeIcon icon={faCaretLeft} />
+        <FontAwesomeIcon
+          icon={faCaretLeft}
+          onClick={() =>
+            setCurrentMonth((curr) => {
+              if (currentYear === 0 && curr === 0) {
+                return curr;
+              }
+
+              if (curr === 0) {
+                setCurrentYear((curr) => curr - 1);
+                return (curr = 11);
+              }
+
+              return curr - 1;
+            })
+          }
+        />
         <Selected
           typeDate={months}
           activeList={activeList}
@@ -60,14 +74,14 @@ const ContainerTable = () => {
           icon={faCaretRight}
           onClick={() =>
             setCurrentMonth((curr) => {
-              if (curr === months.length - 1) {
-                setCurrentYear((curr) =>
-                  currentYear === years.length - 1 ? curr : curr + 1
-                );
-                return (curr = 0);
-              } else {
-                return curr + 1;
+              if (currentYear === years.length - 1 && curr === 11) {
+                return curr;
               }
+              if (curr === 11) {
+                setCurrentYear((curr) => curr + 1);
+                return (curr = 0);
+              }
+              return curr + 1;
             })
           }
           style={{ cursor: "pointer" }}

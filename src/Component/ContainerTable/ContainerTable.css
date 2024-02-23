@@ -1,4 +1,5 @@
 .containerTable {
   border: 1px solid black;
   width: max-content;
+  padding: 50px;
 }
