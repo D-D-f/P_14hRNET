@@ -9,7 +9,7 @@ const TableDate = ({ nbDaysAndFirstDayOnTheMonth }) => {
     numbersDays.push(i);
   }
 
-  return <table style={{ border: "1px solid black", width: "100%" }}></table>;
+  return <div></div>;
 };
 
 export default TableDate;
