@@ -10,9 +10,8 @@ const ContainerTable = () => {
   const currentDate = new Date();
   const currentYears = currentDate.getFullYear();
   const currentMonths = currentDate.getMonth();
-  const currentDateDay = currentDate.getDate();
-
   const months = [
+    "",
     "January",
     "February",
     "March",
@@ -40,11 +39,10 @@ const ContainerTable = () => {
   );
 
   const getFirstDayAndNumbersDays = calculerDatePourCalendrier(
-    currentMonth - 1,
+    currentMonth,
     years[currentYear],
-    currentDateDay
+    1
   );
-
   console.log(getFirstDayAndNumbersDays);
 
   return (
