@@ -1,0 +1,19 @@
+.selected {
+  width: 100px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.selected ul {
+  list-style: none;
+  text-align: center;
+  height: 100px;
+  overflow-y: scroll;
+  font-weight: bold;
+  z-index: 1;
+}
+
+.notSelected:hover {
+  background-color: orange;
+  color: white;
+}
