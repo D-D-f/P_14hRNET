@@ -1,22 +1,11 @@
-.containerDatePicker {
-  display: flex;
+table {
   width: 100%;
-  justify-content: space-around;
-  font-weight: bold;
+  border-collapse: collapse;
 }
 
-.headday {
-  list-style: none;
-  font-weight: bold;
-  text-align: center;
-  width: 100%;
-  height: 100%;
-}
-
-.headday li {
-  text-align: center;
-  width: 30px;
-  height: 30px;
+th,
+td {
   border: 1px solid black;
   padding: 10px;
+  text-align: center;
 }

@@ -1,11 +1,11 @@
-import CreateEmployee from "./Pages/CreateEmployee/CreateEmployee.tsx";
+import ContainerTable from "./Component/ContainerTable/ContainerTable.jsx";
 
 const App = () => {
-    return (
-        <div className="App">
-            <CreateEmployee />
-        </div>
-    )
-}
+  return (
+    <div className="App">
+      <ContainerTable />
+    </div>
+  );
+};
 
 export default App;
