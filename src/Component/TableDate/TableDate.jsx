@@ -2,33 +2,45 @@ import React from "react";
 import "./TableDate.css";
 
 const TableDate = ({ nbDaysAndFirstDayOnTheMonth }) => {
-  const initialDay = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   let firstDay = Number(nbDaysAndFirstDayOnTheMonth.premierJourDuMois);
-  let allj = [];
-  let jour = 1;
+  let allCase = [];
+  let day = 0;
 
   for (let i = 1; i <= 35; i++) {
-    if (
-      i >= firstDay &&
-      i - firstDay < nbDaysAndFirstDayOnTheMonth.nbJourDuMois
-    ) {
-      allj.push(jour);
-      jour++;
+    if (firstDay > i || day >= nbDaysAndFirstDayOnTheMonth.nbJourDuMois) {
+      allCase.push(null);
     } else {
-      allj.push(null);
+      day++;
+      allCase.push(day);
     }
   }
 
-  const displayDataDay = allj.map((day, index) => (
-    <ul className={`premier${index}`}>
-      <li key={index}>{day}</li>
-    </ul>
-  ));
+  const rows = [];
+  for (let i = 0; i < allCase.length; i += 7) {
+    rows.push(
+      <tr key={i / 7}>
+        {allCase.slice(i, i + 7).map((day, index) => (
+          <td key={index}>{day !== null ? day : ""}</td>
+        ))}
+      </tr>
+    );
+  }
 
   return (
-    <div className="containerDatePicker">
-      <div>{displayDataDay}</div>
-    </div>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Mon</th>
+          <th scope="col">Tue</th>
+          <th scope="col">Wed</th>
+          <th scope="col">Thu</th>
+          <th scope="col">Fri</th>
+          <th scope="col">Sat</th>
+          <th scope="col">Sun</th>
+        </tr>
+      </thead>
+      <tbody>{rows}</tbody>
+    </table>
   );
 };
 
