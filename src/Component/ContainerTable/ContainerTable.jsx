@@ -58,13 +58,13 @@ const ContainerTable = () => {
           icon={faCaretLeft}
           onClick={() =>
             setCurrentMonth((curr) => {
-              if (currentYear === 0 && curr === 0) {
+              if (currentYear === 0 && curr === 1) {
                 return curr;
               }
 
-              if (curr === 0) {
+              if (curr === 1) {
                 setCurrentYear((curr) => curr - 1);
-                return (curr = 11);
+                return (curr = 12);
               }
 
               return curr - 1;
@@ -91,12 +91,12 @@ const ContainerTable = () => {
           icon={faCaretRight}
           onClick={() =>
             setCurrentMonth((curr) => {
-              if (currentYear === years.length - 1 && curr === 11) {
+              if (currentYear === years.length - 1 && curr === 12) {
                 return curr;
               }
-              if (curr === 11) {
+              if (curr === 12) {
                 setCurrentYear((curr) => curr + 1);
-                return (curr = 0);
+                return (curr = 1);
               }
               return curr + 1;
             })
