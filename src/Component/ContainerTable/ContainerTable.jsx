@@ -33,6 +33,7 @@ const ContainerTable = () => {
     years.push(i);
   }
 
+  const [activeTable, setActiveTable] = useState(false);
   const [activeList, setActiveList] = useState(false);
   const [activeListYear, setActiveListYear] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(
@@ -62,71 +63,78 @@ const ContainerTable = () => {
       <input
         style={{ width: "100%" }}
         type="text"
+        readOnly
+        onClick={() => setActiveTable(!activeTable)}
         value={datecurrent !== undefined ? valueInput : currentDay}
       />
       <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          width: "100%",
-          padding: "0 10px",
-          border: "1Px solid black",
-        }}
+        style={activeTable ? { display: "block" } : { display: "none" }}
+        className="table"
       >
-        <FontAwesomeIcon
-          icon={faCaretLeft}
-          onClick={() =>
-            setCurrentMonth((curr) => {
-              if (currentYear === 0 && curr === 1) {
-                return curr;
-              }
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            width: "100%",
+            padding: "0 10px",
+            border: "1Px solid black",
+          }}
+        >
+          <FontAwesomeIcon
+            icon={faCaretLeft}
+            onClick={() =>
+              setCurrentMonth((curr) => {
+                if (currentYear === 0 && curr === 1) {
+                  return curr;
+                }
 
-              if (curr === 1) {
-                setCurrentYear((curr) => curr - 1);
-                return (curr = 12);
-              }
-              return curr - 1;
-            })
-          }
-          style={{ cursor: "pointer" }}
-        />
-        <Selected
-          typeDate={months}
-          activeList={activeList}
-          currentMonth={currentMonth}
-          setActiveList={setActiveList}
-          setCurrentMonth={setCurrentMonth}
-        />
+                if (curr === 1) {
+                  setCurrentYear((curr) => curr - 1);
+                  return (curr = 12);
+                }
+                return curr - 1;
+              })
+            }
+            style={{ cursor: "pointer" }}
+          />
+          <Selected
+            typeDate={months}
+            activeList={activeList}
+            currentMonth={currentMonth}
+            setActiveList={setActiveList}
+            setCurrentMonth={setCurrentMonth}
+          />
 
-        <Selected
-          typeDate={years}
-          activeList={activeListYear}
-          currentMonth={currentYear}
-          setActiveList={setActiveListYear}
-          setCurrentMonth={setCurrentYear}
-        />
-        <FontAwesomeIcon
-          icon={faCaretRight}
-          onClick={() =>
-            setCurrentMonth((curr) => {
-              if (currentYear === years.length - 1 && curr === 12) {
-                return curr;
-              }
-              if (curr === 12) {
-                setCurrentYear((curr) => curr + 1);
-                return (curr = 1);
-              }
-              return curr + 1;
-            })
-          }
-          style={{ cursor: "pointer" }}
+          <Selected
+            typeDate={years}
+            activeList={activeListYear}
+            currentMonth={currentYear}
+            setActiveList={setActiveListYear}
+            setCurrentMonth={setCurrentYear}
+          />
+          <FontAwesomeIcon
+            icon={faCaretRight}
+            onClick={() =>
+              setCurrentMonth((curr) => {
+                if (currentYear === years.length - 1 && curr === 12) {
+                  return curr;
+                }
+                if (curr === 12) {
+                  setCurrentYear((curr) => curr + 1);
+                  return (curr = 1);
+                }
+                return curr + 1;
+              })
+            }
+            style={{ cursor: "pointer" }}
+          />
+        </div>
+
+        <TableDate
+          nbDaysAndFirstDayOnTheMonth={getFirstDayAndNumbersDays}
+          changeDate={setChosenDate}
         />
       </div>
-
-      <TableDate
-        nbDaysAndFirstDayOnTheMonth={getFirstDayAndNumbersDays}
-        changeDate={setChosenDate}
-      />
     </div>
   );
 };
