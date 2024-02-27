@@ -40,10 +40,6 @@ const calculerDatePourCalendrier = (
   laDate.setMonth(numMois - 1);
   let premierJour = laDate.getDay().toLocaleString("fr");
 
-  const joursSemaine = ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"];
-  let first = joursSemaine[laDate.getDay()];
-  console.log(first);
-
   return { nbJourDuMois: nbJours, premierJourDuMois: premierJour };
 };
 

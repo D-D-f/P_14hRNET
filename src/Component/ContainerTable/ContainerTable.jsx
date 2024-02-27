@@ -10,7 +10,8 @@ import { useEffect } from "react";
 const ContainerTable = () => {
   const currentDate = new Date();
   const currentYears = currentDate.getFullYear();
-  const currentMonths = currentDate.getMonth();
+  const currentMonths = currentDate.getMonth() + 1;
+
   const months = [
     "",
     "January",
@@ -34,12 +35,12 @@ const ContainerTable = () => {
 
   const [activeList, setActiveList] = useState(false);
   const [activeListYear, setActiveListYear] = useState(false);
-  const [currentYear, setCurrentYear] = useState(years.indexOf(currentYears));
   const [currentMonth, setCurrentMonth] = useState(
     months.indexOf(months[currentMonths])
   );
-  const [chosenDate, setChosenDate] = useState();
+  const [currentYear, setCurrentYear] = useState(years.indexOf(currentYears));
 
+  const [chosenDate, setChosenDate] = useState([]);
   const getFirstDayAndNumbersDays = calculerDatePourCalendrier(
     currentMonth,
     years[currentYear],
@@ -47,18 +48,29 @@ const ContainerTable = () => {
   );
 
   useEffect(() => {
-    setChosenDate(() => [years[currentYear], currentMonth]);
-  }, []);
+    setChosenDate(() => [currentMonth, years[currentYear]]);
+  }, [currentMonth, currentYear]);
 
-  console.log(chosenDate);
+  const currentDay = `${currentDate.getDate()}/${
+    currentDate.getMonth() + 1
+  }/${currentDate.getFullYear()}`;
+
+  let [monthcurrent, yearcurrent, datecurrent] = [...chosenDate];
+  let valueInput = `${datecurrent}/${monthcurrent}/${yearcurrent}`;
   return (
     <div className="containerTable">
-      <input style={{ width: "100%" }} type="text" />
+      <input
+        style={{ width: "100%" }}
+        type="text"
+        value={datecurrent !== undefined ? valueInput : currentDay}
+      />
       <div
         style={{
           display: "flex",
           justifyContent: "space-between",
-          padding: "10px 20px",
+          width: "100%",
+          padding: "0 10px",
+          border: "1Px solid black",
         }}
       >
         <FontAwesomeIcon
