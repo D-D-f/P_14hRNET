@@ -5,6 +5,7 @@ import { faCaretRight, faCaretLeft } from "@fortawesome/free-solid-svg-icons";
 import calculerDatePourCalendrier from "../../CustomHooks/UseCalculDay";
 import "./ContainerTable.css";
 import React, { useState } from "react";
+import { useEffect } from "react";
 
 const ContainerTable = () => {
   const currentDate = new Date();
@@ -37,16 +38,22 @@ const ContainerTable = () => {
   const [currentMonth, setCurrentMonth] = useState(
     months.indexOf(months[currentMonths])
   );
+  const [chosenDate, setChosenDate] = useState();
 
   const getFirstDayAndNumbersDays = calculerDatePourCalendrier(
     currentMonth,
     years[currentYear],
     1
   );
-  console.log(getFirstDayAndNumbersDays);
 
+  useEffect(() => {
+    setChosenDate(() => [years[currentYear], currentMonth]);
+  }, []);
+
+  console.log(chosenDate);
   return (
     <div className="containerTable">
+      <input style={{ width: "100%" }} type="text" />
       <div
         style={{
           display: "flex",
@@ -66,7 +73,6 @@ const ContainerTable = () => {
                 setCurrentYear((curr) => curr - 1);
                 return (curr = 12);
               }
-
               return curr - 1;
             })
           }
@@ -104,7 +110,11 @@ const ContainerTable = () => {
           style={{ cursor: "pointer" }}
         />
       </div>
-      <TableDate nbDaysAndFirstDayOnTheMonth={getFirstDayAndNumbersDays} />
+
+      <TableDate
+        nbDaysAndFirstDayOnTheMonth={getFirstDayAndNumbersDays}
+        changeDate={setChosenDate}
+      />
     </div>
   );
 };

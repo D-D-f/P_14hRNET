@@ -1,7 +1,7 @@
 import React from "react";
 import "./TableDate.css";
 
-const TableDate = ({ nbDaysAndFirstDayOnTheMonth }) => {
+const TableDate = ({ nbDaysAndFirstDayOnTheMonth, changeDate }) => {
   let firstDay = Number(nbDaysAndFirstDayOnTheMonth.premierJourDuMois);
   let allCase = [];
   let day = 0;
@@ -20,7 +20,18 @@ const TableDate = ({ nbDaysAndFirstDayOnTheMonth }) => {
     rows.push(
       <tr key={i / 7}>
         {allCase.slice(i, i + 7).map((day, index) => (
-          <td key={index}>{day !== null ? day : ""}</td>
+          <td
+            onClick={(e) =>
+              changeDate((curr) =>
+                curr.length > 2
+                  ? [...curr.splice(2, 1), Number(e.target.textContent)]
+                  : [...curr, Number(e.target.textContent)]
+              )
+            }
+            key={index}
+          >
+            {day !== null ? day : ""}
+          </td>
         ))}
       </tr>
     );
