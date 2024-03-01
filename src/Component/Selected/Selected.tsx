@@ -34,20 +34,22 @@ const Selected = ({
 
   return (
     <div className="selected">
-      <div
-        onClick={() => setActiveList((curr) => !curr)}
-        style={{ fontWeight: "bold" }}
-      >
-        {typeDate[currentMonth]}
-        <FontAwesomeIcon icon={faSortDown} style={{ marginLeft: "10px" }} />
-      </div>
-      <ul
-        style={activeList === true ? { display: "block" } : { display: "none" }}
-      >
-        {displaytypeDates}
-      </ul>
-    </div>
-  );
+        <div
+            onClick={() => setActiveList((curr) => !curr)}
+            className="titleMonthYear"
+        >
+            {typeDate[currentMonth]}
+            <FontAwesomeIcon icon={faSortDown} style={{marginLeft: "10px"}} size="xs"/>
+            <ul
+                style={activeList === true ? {display: "block"} : {display: "none"}}
+                className="ulMonthYear"
+            >
+                {displaytypeDates}
+            </ul>
+        </div>
+</div>
+)
+    ;
 };
 
 export default Selected;

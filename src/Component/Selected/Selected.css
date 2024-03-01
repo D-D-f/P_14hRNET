@@ -2,6 +2,9 @@
   width: 100px;
   cursor: pointer;
   text-align: center;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
 }
 
 .selected ul {
@@ -16,4 +19,16 @@
 .notSelected:hover {
   background-color: orange;
   color: white;
+}
+
+.titleMonthYear {
+  position: relative;
+}
+
+.ulMonthYear {
+  position: absolute;
+  z-index: 1;
+  background: white;
+  top: 20px;
+  padding: 10px;
 }
