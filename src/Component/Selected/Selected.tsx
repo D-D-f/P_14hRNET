@@ -10,7 +10,6 @@ interface SelectedProps {
   activeList: Boolean;
   currentMonth: number;
   currentYear: number;
-  setActiveList: React.Dispatch<React.SetStateAction<boolean>>;
   setCurrentMonth: React.Dispatch<React.SetStateAction<number>>;
   setCurrentYear: React.Dispatch<React.SetStateAction<number>>;
 }

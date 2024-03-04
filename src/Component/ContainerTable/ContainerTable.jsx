@@ -5,8 +5,8 @@ import { faCaretRight, faCaretLeft } from "@fortawesome/free-solid-svg-icons";
 import calculDateDay from "../../CustomHooks/UseCalculDay";
 import UseCalculDate from "../../CustomHooks/UseCalculDate";
 import "./ContainerTable.css";
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { ActiveContext } from "../../Context/ActiveContext";
 
 const ContainerTable = () => {
   const {
@@ -23,9 +23,7 @@ const ContainerTable = () => {
     setCurrentYear,
   } = UseCalculDate();
 
-  const [activeTable, setActiveTable] = useState(false);
-  const [activeList, setActiveList] = useState(false);
-  const [activeListYear, setActiveListYear] = useState(false);
+  const { activeDateTime, displayDateTime } = useContext(ActiveContext);
   const [chosenDate, setChosenDate] = useState([]);
   const getFirstDayAndNumbersDays = calculDateDay(currentMonth, currentYear, 1);
 
@@ -56,11 +54,11 @@ const ContainerTable = () => {
         style={{ width: "100%" }}
         type="text"
         readOnly
-        onClick={() => setActiveTable(!activeTable)}
+        onClick={() => displayDateTime()}
         value={datecurrent !== undefined ? valueInput : currentDay}
       />
       <div
-        style={activeTable ? { display: "block" } : { display: "none" }}
+        style={activeDateTime ? { display: "block" } : { display: "none" }}
         className="table"
       >
         <div className="head">
@@ -77,7 +75,6 @@ const ContainerTable = () => {
             Years={years}
             currentMonth={currentMonth}
             currentYear={currentYear}
-            setActiveList={setActiveList}
             setCurrentMonth={setCurrentMonth}
             setCurrentYear={setCurrentYear}
           />
