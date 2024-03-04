@@ -3,7 +3,7 @@ interface resultat {
   premierJourDuMois: string;
 }
 
-const calculerDatePourCalendrier = (
+const calculDateDay = (
   numMois: number,
   annee: number,
   dateDuMois: number
@@ -43,4 +43,4 @@ const calculerDatePourCalendrier = (
   return { nbJourDuMois: nbJours, premierJourDuMois: premierJour };
 };
 
-export default calculerDatePourCalendrier;
+export default calculDateDay;

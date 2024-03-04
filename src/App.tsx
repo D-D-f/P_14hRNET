@@ -1,9 +1,12 @@
 import ContainerTable from "./Component/ContainerTable/ContainerTable.jsx";
+import ActiveContextProvider from "./Context/ActiveContext.tsx";
 
 const App = () => {
   return (
     <div className="App">
-      <ContainerTable />
+        <ActiveContextProvider>
+            <ContainerTable />
+        </ActiveContextProvider>
     </div>
   );
 };

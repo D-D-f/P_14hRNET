@@ -1,5 +1,5 @@
 .selected {
-  width: 100px;
+  width: 90%;
   cursor: pointer;
   text-align: center;
   padding: 10px;
@@ -16,7 +16,6 @@
   z-index: 1;
 }
 
-
 .notSelected:hover {
   background-color: orange;
   color: white;
@@ -30,6 +29,15 @@
   position: absolute;
   z-index: 1;
   background: white;
-  top: 20px;
+  top: 50px;
+  left: 50px;
+  padding: 10px;
+}
+
+.ulYear {
+  position: absolute;
+  z-index: 1;
+  background-color: white;
+  top: 50px;
   padding: 10px;
 }

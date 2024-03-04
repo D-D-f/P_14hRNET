@@ -1,55 +1,102 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSortDown } from "@fortawesome/free-solid-svg-icons";
+import { useContext } from "react";
+import { ActiveContext } from "../../Context/ActiveContext";
 import "./Selected.css";
 
 interface SelectedProps {
-  typeDate: string[] | number[];
+  Months: string[];
+  Years: number[];
   activeList: Boolean;
   currentMonth: number;
+  currentYear: number;
   setActiveList: React.Dispatch<React.SetStateAction<boolean>>;
   setCurrentMonth: React.Dispatch<React.SetStateAction<number>>;
+  setCurrentYear: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Selected = ({
-  typeDate,
-  activeList,
+  Months,
+  Years,
   currentMonth,
+  currentYear,
   setCurrentMonth,
-  setActiveList,
+  setCurrentYear,
 }: SelectedProps) => {
-  const displaytypeDates = typeDate.map((typeDate, index) => (
+  const { activeListMonth, activeListYear, displayYearList, displayMonthList } =
+    useContext(ActiveContext);
+
+  const listMonth = Months.map((months, index) => (
     <li
       style={
         currentMonth === index
-          ? { backgroundColor: "#212AFBFF", color: "white" }
-          : { backgroundColor: "" }
+          ? { backgroundColor: "#212AFBFF", color: "white", cursor: "pointer" }
+          : { backgroundColor: "", cursor: "pointer" }
       }
       className={currentMonth !== index ? "notSelected" : ""}
       onClick={() => setCurrentMonth(index)}
       key={index}
     >
-      {typeDate}
+      {months}
+    </li>
+  ));
+
+  const listYears = Years.map((years, index) => (
+    <li
+      style={
+        currentYear === index
+          ? { backgroundColor: "#212AFBFF", color: "white", cursor: "pointer" }
+          : { backgroundColor: "", cursor: "pointer" }
+      }
+      className={currentYear !== index ? "notSelected" : ""}
+      onClick={() => setCurrentYear(index)}
+      key={index}
+    >
+      {years}
     </li>
   ));
 
   return (
     <div className="selected">
-        <div
-            onClick={() => setActiveList((curr) => !curr)}
-            className="titleMonthYear"
-        >
-            {typeDate[currentMonth]}
-            <FontAwesomeIcon icon={faSortDown} style={{marginLeft: "10px"}} size="xs"/>
-            <ul
-                style={activeList === true ? {display: "block"} : {display: "none"}}
-                className="ulMonthYear"
-            >
-                {displaytypeDates}
-            </ul>
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "space-around",
+        }}
+      >
+        <div onClick={() => displayMonthList()}>
+          {Months[currentMonth]}
+          <FontAwesomeIcon
+            icon={faSortDown}
+            style={{ marginLeft: "10px" }}
+            size="xs"
+          />
+          <ul
+            style={activeListMonth ? { display: "block" } : { display: "none" }}
+            className="ulMonthYear"
+          >
+            {listMonth}
+          </ul>
         </div>
-</div>
-)
-    ;
+
+        <div onClick={() => displayYearList()}>
+          {Years[currentYear]}
+          <FontAwesomeIcon
+            icon={faSortDown}
+            style={{ marginLeft: "10px" }}
+            size="xs"
+          />
+          <ul
+            style={activeListYear ? { display: "block" } : { display: "none" }}
+            className="ulYear"
+          >
+            {listYears}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Selected;

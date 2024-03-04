@@ -6,8 +6,6 @@ const TableDate = ({ nbDaysAndFirstDayOnTheMonth, changeDate }) => {
   let allCase = [];
   let day = 0;
 
-  console.log(nbDaysAndFirstDayOnTheMonth);
-
   for (let i = 1; i <= 35; i++) {
     if (firstDay > i || day >= nbDaysAndFirstDayOnTheMonth.nbJourDuMois) {
       allCase.push(null);
