@@ -1,9 +1,9 @@
 ## HrNet
 
 <p align="center">
-  <img src="https://user.oc-static.com/upload/2020/08/14/15974125765772_image2.jpg">
+  <img src="https://illustoon.com/photo/12392.png">
 </p>
 
 ## Author
-DAVID DE FREITAS
 
+DAVID DE FREITAS
